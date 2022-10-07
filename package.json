@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/XiliTra/ACM_BOT#readme",
   "dependencies": {
+    "@discordjs/rest": "^1.2.0",
+    "discord-api-types": "^0.37.12",
     "discord.js": "^14.5.0",
     "dotenv": "^16.0.3"
   }

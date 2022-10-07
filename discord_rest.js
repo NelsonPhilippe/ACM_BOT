@@ -1,5 +1,7 @@
-const { REST, Routes, REST} = require('discord.js')
-const { discord_token, discord_client_id } = require('./discord_rest')
+const { REST, Routes } = require('discord.js');
+const { discord_token, discord_client_id } = require('./index')
+
+console.log(discord_token)
 
 const commands = [
     {
@@ -9,7 +11,7 @@ const commands = [
 ]
 
 
-const rest = new REST({ version : 10 }).setToken(discord_token)
+const rest = new REST({ version : 10 }).setToken(discord_token);
 
 
 (async () => {
