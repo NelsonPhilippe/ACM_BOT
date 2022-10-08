@@ -1,4 +1,4 @@
-
+const { commands } = require('./../discord_rest')
 
 exports.Command = class Command {
 
@@ -8,6 +8,13 @@ exports.Command = class Command {
         this.options = options;
     }
 
+    register_command(){
+
+        commands.push({
+            name: this.name,
+            description: this.description
+        })
+    }
 
 
 }

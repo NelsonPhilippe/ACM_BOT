@@ -5,6 +5,8 @@ require('dotenv').config()
 exports.discord_token = process.env.DISCORD_TOKEN
 exports.discord_client_id = process.env.DISCORD_CLIENT_ID
 
+
+
 require('./discord_rest')
 
 

@@ -3,7 +3,7 @@ const { discord_token, discord_client_id } = require('./index')
 
 console.log(discord_token)
 
-const commands = [
+exports.commands = [
     {
         name : "ping",
         description: "Permet de vérifier le bon fonctionnement du bot discord"
