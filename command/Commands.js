@@ -7,13 +7,13 @@ exports.Command = class Command {
     /**
      * 
      * @param {String} name Command name
-     * @param {*} description Description of command
-     * @param {*} options Optionnal argument for command (optional)
+     * @param {String} description Description of command
+     * @param {Array} arg Argument for command
      */
-    constructor(name, description, options) {
+    constructor(name, description, arg) {
         this.name = name;
         this.description = description;
-        this.options = options;
+        this.arg = arg;
     }
 
     register_command(){
