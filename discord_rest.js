@@ -1,25 +1,27 @@
-const { REST, Routes } = require('discord.js');
-const { discord_token, discord_client_id } = require('./index')
+import { REST, Routes } from 'discord.js';
+import { discord_token, discord_client_id } from './index'
+import fs from 'fs'
 
-console.log(discord_token)
+const commands = []
 
-exports.commands = [
-    {
-        name : "ping",
-        description: "Permet de vérifier le bon fonctionnement du bot discord"
-    }
-]
+const commandFiles = fs.readdirSync('./command').filter(file => file.endsWith('.js'))
+
+
+for(const file of commandFiles){
+    const command = require(`./command/${file}`)
+    commands.push(command.data.toJson())
+}
 
 
 const rest = new REST({ version : 10 }).setToken(discord_token);
 
 
-exports.register_commands = () => {
+const register_commands = () => {
     (async () => {
         try {
             console.log('Started refreshing application (/) commands.');
     
-            await rest.put(Routes.applicationCommands(discord_client_id), { body: commands });
+            await rest.put(Routes.applicationCommands(discord_client_id), { body: this.commands });
     
             console.log('Successfully reloaded application (/) commands.');
         } catch (error) {
@@ -27,3 +29,5 @@ exports.register_commands = () => {
         }
     })();
 }
+
+module.exports = { register_commands }
