@@ -2,7 +2,7 @@
 
 
 
-module.exports = {
+export const ticket_cmd = {
     data: new SlashCommandBuilder()
         .setName('ticket')
         .setDescription('Support command for support.'),

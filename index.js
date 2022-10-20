@@ -1,11 +1,14 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
-require('dotenv').config()
 
-exports.discord_token = process.env.DISCORD_TOKEN
-exports.discord_client_id = process.env.DISCORD_CLIENT_ID
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 import {register_commands} from './discord_rest.js'
+
+const discord_token = process.env.DISCORD_TOKEN
+const discord_client_id = process.env.DISCORD_CLIENT_ID
 
 
 register_commands()
@@ -23,15 +26,10 @@ client.on('interactionCreate', async interaction => {
     if (interaction.commandName === 'ping') {
         await interaction.reply('Pong!');
     }
-
-    ticket_command.event(interaction)
-
     
 })
 
 
-client.login(this.discord_token);
+client.login(discord_token);
 
-
-
-
+export {discord_token, discord_client_id}
