@@ -1,12 +1,22 @@
- import { SlashCommandBuilder } from 'discord.js';
+import { EmbedBuilder } from 'discord.js'
 
 
+const ticket_cmd = async (interaction) => {
 
-export const ticket_cmd = {
-    data: new SlashCommandBuilder()
-        .setName('ticket')
-        .setDescription('Support command for support.'),
-        async execute(interaction){
-            await interaction.reply('Tezst')
-        }
+    const ticketEmbed = new EmbedBuilder()
+        .setColor(0x0099FF)
+        .setTitle('Support ' + interaction.guild.name)
+        .setDescription('React to open a ticket')
+        .addFields(
+            {
+                name: 'Ticket',
+                value: 'React to open a ticket',
+            }
+        )
+        .setTimestamp();
+
+    await interaction.channel.send(ticketEmbed)
+
 }
+
+export {ticket_cmd}
