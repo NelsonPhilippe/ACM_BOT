@@ -9,6 +9,10 @@ dotenv.config()
 
 const commands = [ 
     {
+        name : "ping",
+        description : "Test command"
+    },
+    {
         name: "ticket",
         description : "Support commands for create ticket"
     } 
