@@ -1,20 +1,29 @@
-const { REST, Routes } = require('discord.js');
-const { discord_token, discord_client_id } = require('./index')
+import { REST, Routes } from 'discord.js';
 
-console.log(discord_token)
+import * as dotenv from 'dotenv'
 
-exports.commands = [
+dotenv.config()
+
+
+
+
+const commands = [ 
     {
         name : "ping",
-        description: "Permet de vérifier le bon fonctionnement du bot discord"
-    }
+        description : "Test command"
+    },
+    {
+        name: "ticket",
+        description : "Support commands for create ticket"
+    } 
 ]
 
+const discord_token = process.env.DISCORD_TOKEN
+const discord_client_id = process.env.DISCORD_CLIENT_ID
 
 const rest = new REST({ version : 10 }).setToken(discord_token);
 
-
-exports.register_commands = () => {
+const register_commands = () => {
     (async () => {
         try {
             console.log('Started refreshing application (/) commands.');
@@ -27,3 +36,5 @@ exports.register_commands = () => {
         }
     })();
 }
+
+export { register_commands }
