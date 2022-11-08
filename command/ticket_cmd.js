@@ -1,8 +1,6 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } from 'discord.js'
-import { setTimeout } from 'node:timers/promises'
-/**
- * 
- */
+
+
 const ticket_cmd = async (interaction) => {
 
     const row = new ActionRowBuilder()
@@ -26,9 +24,10 @@ const ticket_cmd = async (interaction) => {
         )
         .setTimestamp();
 
-    await interaction.channel.send({ embeds: [ticketEmbed], ephemeral: true, components : [row] })
-    setTimeout(2000)
-    await interaction.deferReply({content : 'Your ticket embded is succefully builded', ephemeral : true})
+    await interaction.channel.send({ embeds: [ticketEmbed], components : [row] })
+    await interaction.deferReply({ephemeral: true});
+    await interaction.editReply({content : 'Your ticket embded is succefully builded', ephemeral : true})
+
 
 }
 
