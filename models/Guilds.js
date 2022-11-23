@@ -4,7 +4,7 @@ const sequelize = new Sequelize('sqlite::memory:')
 
 export class Guild extends Model{}
 
-export function init_guild() {
+export function init_guild () {
     Guild.init({
 
         guild_id : {

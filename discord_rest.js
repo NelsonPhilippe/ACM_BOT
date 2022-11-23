@@ -1,22 +1,20 @@
-import { REST, Routes } from 'discord.js';
+import { formatEmoji, REST, Routes } from 'discord.js';
+
+import fs from 'node:fs';
 
 import * as dotenv from 'dotenv'
 
 dotenv.config()
 
 
+const commands = [];
 
+const commandFiles = fs.readdirSync('./command').filter(file => file.endsWith('.js'));
 
-const commands = [ 
-    {
-        name : "ping",
-        description : "Test command"
-    },
-    {
-        name: "ticket",
-        description : "Support commands for create ticket"
-    } 
-]
+for(const file of commandFiles){
+    const command = import(`./command/${file}`);
+    commands.push(command.data.toJson())
+}
 
 const discord_token = process.env.DISCORD_TOKEN
 const discord_client_id = process.env.DISCORD_CLIENT_ID
