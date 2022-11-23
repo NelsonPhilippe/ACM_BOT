@@ -4,7 +4,7 @@ import { SlashCommandBuilder } from 'discord.js';
 export default {
     data: new SlashCommandBuilder()
         .setName('ticket')
-        .setDescription(''),
+        .setDescription('Ticket command for support'),
     async execute(interaction) {
         const row = new ActionRowBuilder()
             .addComponents(

@@ -1,17 +1,17 @@
 import fs from "node:fs";
 
-export default (client) => {
+export default async (client) => {
     client.handleEvents = async () => {
 
         const eventFiles = fs.readdirSync('./events').filter(e => e.endsWith('.js'));
         
         for(const file of eventFiles){
-            const event = import('./events/' + file);
+            const event = await import('../events/' + file);
         
-            if(event.once){
-                client.once(event.name, (...args) => event.execute(...args));
+            if(event.default.once){
+                client.once(event.default.name, (...args) => event.default.execute(...args));
             } else {
-                client.on(event.name, (...args) => event.execute(...args));
+                client.on(event.default.name, (...args) => event.default.execute(...args));
             }
         }        
     }

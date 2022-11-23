@@ -10,20 +10,6 @@ const discord_token = process.env.DISCORD_TOKEN;
 // start client discord
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
-
-    const guilds = client.guilds.cache
-
-    guilds.forEach(async element => {
-        let id = element.id
-        let name = element.name
-        
-        await Guild.create({
-            guild_id : id,
-            name : name
-        })
-
-    });
-
 })
 
 const handlersFolder = fs.readdirSync('./handlers').filter(e => e.endsWith('.js'));

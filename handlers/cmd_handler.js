@@ -3,7 +3,7 @@ import fs from 'node:fs';
 
 import * as dotenv from 'dotenv'
 
-export default (client) => {
+export default async (client) => {
     client.handleCommands = async () => {
         dotenv.config()
 
@@ -15,8 +15,8 @@ export default (client) => {
 
         for (const file of commandFiles) {
             console.log(file);
-            const { cmd } = import(`./command/${file}`);
-            commands.push(cmd.data.toJson())
+            const cmd = await import(`../command/${file}`);
+            commands.push(cmd.default.data.toJSON())
         }
 
         const rest = new REST({ version: 10 }).setToken(discord_token);

@@ -1,7 +1,7 @@
 import { Events } from "discord.js";
 
 
-export const cmd =  {
+export default {
     name: Events.ClientReady,
     once: true,
     execute(client) {
